@@ -32,8 +32,11 @@ function multipleAllBy(numbers, multipleValue) {
     return result
 }
 
-function singleIncrement(current, increment) {
-    return current + increment
+function singleIncrement(current) {
+    return current + 5
+}
+function powerOfTwo(current){
+    return current * current
 }
 
 
@@ -50,10 +53,12 @@ function myMap(numbers, fn, value) {
     return fn(numbers, value)
 }
 
-function singleMap(numbers, fn, value) {
+function map(array, fn) {
     const res = []
-    for (let i = 0; i < numbers.length; i++) {
-        res[i] = fn(numbers[i], value)
+    // todo: do this w/ reduce
+    // todo: let map get matrix and return elements on the main diagonal using native map
+    for (let i = 0; i < array.length; i++) {
+        res[i] = fn(array[i], i, array)
     }
     return res
 }
@@ -69,6 +74,7 @@ console.log('After multiplication by 5', multiplicationMapResult)
 console.log('After power by 5', multiplicationMapResult)
 console.log('-----Single map-----')
 console.log('increment by 10: ', this.singleMap(numbers, this.singleIncrement, 10))
+console.log('POWER ^ 2: ', this.singleMap(numbers, this.powerOfTwo))
 
 const usedNativeMap = numbers.map(n => n * 5)
 console.log('Native map result: ', usedNativeMap)
@@ -76,3 +82,5 @@ const depricatedMap = numbers.map(function (n) {
     return n * 5
 })
 console.log('Deprecated map result: ', depricatedMap)
+const meetingMapResult = map([1,2,3], singleIncremenet)
+const meetingMapResult2 = map([1,2,3], (value, i, array) => { console.log(value, i, array)})
